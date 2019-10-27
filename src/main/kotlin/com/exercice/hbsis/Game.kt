@@ -26,11 +26,11 @@ class Game {
         }
     }
 
-    fun rps_tournament_winner(participants: MutableList<Competitor>, nextFase: MutableList<Competitor> = mutableListOf(), matchStart: Boolean = false) : Competitor? {
+    fun rps_tournament_winner(participants: MutableList<Competitor>, nextFase: MutableList<Competitor> = mutableListOf()) : Competitor? {
         if (participants.isEmpty() && nextFase.size == 1) {
             return nextFase.get(nextFase.lastIndex);
         }
-        if ((participants.isEmpty() && nextFase.isEmpty()) || (participants.size.rem(2) != 0 && !matchStart)) {
+        if ((participants.isEmpty() && nextFase.isEmpty())) {
             throw WrongNumberOfPlayersException("Number of players invalid");
         }
         val firstCompetidor = participants.first();
@@ -42,6 +42,6 @@ class Game {
             participants.remove(secondCompetidor)
             nextFase.add(rps_game_winner(listOf(firstCompetidor, secondCompetidor)));
         }
-        return if (participants.isEmpty() && nextFase.size != 1) rps_tournament_winner(nextFase, participants, true); else rps_tournament_winner(participants, nextFase, true);
+        return if (participants.isEmpty() && nextFase.size != 1) rps_tournament_winner(nextFase, participants); else rps_tournament_winner(participants, nextFase);
     }
 }

@@ -17,7 +17,7 @@ class GameTest {
                 Competitor("Armando", "R"), Competitor("Dave", "N")
         )
         val exception = assertFailsWith<NoSuchStrategyException> { game.rps_game_winner(participants) }
-        assertEquals("Invalid choise from players", exception.message);
+        assertEquals(exception.message, "Invalid choise from players");
     }
 
     @Test
@@ -26,7 +26,7 @@ class GameTest {
                 Competitor("Armando", "R"), Competitor("Dave", "p"), Competitor("Junior", "p")
         )
         val exception = assertFailsWith<WrongNumberOfPlayersException> { game.rps_game_winner(participants) }
-        assertEquals("Number of players invalid", exception.message);
+        assertEquals(exception.message, "Number of players invalid");
     }
 
     @Test
@@ -34,7 +34,7 @@ class GameTest {
         val participants = mutableListOf(
                 Competitor("Armando", "R"), Competitor("Dave", "p")
         )
-        Assertions.assertEquals(game.rps_game_winner(participants).toString(), "Competitor(name='Dave', choise='P')")
+        Assertions.assertEquals("Competitor(name='Dave', choise='P')", game.rps_game_winner(participants).toString())
     }
 
     @Test
@@ -43,18 +43,16 @@ class GameTest {
                 Competitor("Armando", "R")
         )
         val exception = assertFailsWith<WrongNumberOfPlayersException> { game.rps_game_winner(participants) }
-        assertEquals("Number of players invalid", exception.message);    }
+        assertEquals(exception.message, "Number of players invalid");    }
 
     @Test
-    fun `should nick win the tournament`(){
+    fun `should richard win the tournament`(){
         val participants = mutableListOf(
-                Competitor("Armando", "R"), Competitor("Dave", "p"),
-                Competitor("Junior", "p"), Competitor("Alex", "S"),
-                Competitor("Klaus", "S"), Competitor("Rodrigo", "R"),
-                Competitor("Elijah", "R"), Competitor("Morgana", "R"),
-                Competitor("Nick", "P"), Competitor("Peter", "R"),
-                Competitor("Megan", "R"), Competitor("Diana", "p")
+                Competitor("Armando", "P"), Competitor("Dave", "S"),
+                Competitor("Richard", "R"), Competitor("Michel", "S"),
+                Competitor("Allen", "S"), Competitor("Omer", "P"),
+                Competitor("David E.", "R"), Competitor("Richard X.", "P")
         )
-        Assertions.assertEquals(game.rps_tournament_winner(participants).toString(), "Competitor(name='Nick', choise='P')")
+        Assertions.assertEquals("Competitor(name='Richard', choise='R')", game.rps_tournament_winner(participants).toString())
     }
 }
